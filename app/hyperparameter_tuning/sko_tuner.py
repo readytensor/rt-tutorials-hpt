@@ -145,8 +145,8 @@ class SKOHyperparameterTuner(HyperparameterTuner):
         plot_objective(result=optimizer_result, plot_dims=self.ordered_hps)
         figure = plt.gcf() # get current figure
         figure.tight_layout()
-        fig_ax_wd = 2 + len(self.ordered_hps) * 3  # 3 inches per dimension to make it specious enough + 2 inches fixed
-        fig_ax_ht= 1 + len(self.ordered_hps) * 3  # 3 inches per dimension to make it specious enough  + 1 inch fixed
+        fig_ax_wd = 2 + len(self.ordered_hps) * 3  # 3 inches per dimension to make it spacious enough + 2 inches fixed
+        fig_ax_ht= 1 + len(self.ordered_hps) * 3  # 3 inches per dimension to make it spacious enough  + 1 inch fixed
         figure.set_size_inches(fig_ax_wd, fig_ax_ht)
         plt.savefig(os.path.join(self.hpt_results_dir_path, "partial_dependence_plot.png"))
 
