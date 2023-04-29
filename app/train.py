@@ -48,14 +48,14 @@ def load_and_split_data(val_pct: float) -> \
 def preprocess_and_balance_data(
         model_config: Dict[str, Any],
         data_schema: BinaryClassificationSchema,
-        data_split: pd.DataFrame) -> Tuple[Pipeline, LabelEncoder, pd.DataFrame, pd.Series]:
+        train_split: pd.DataFrame) -> Tuple[Pipeline, LabelEncoder, pd.DataFrame, pd.Series]:
     """
     Preprocess and balance the data using the provided model configuration and data schema.
 
     Args:
         model_config: A dictionary containing the model configuration.
         data_schema: A dictionary containing the data schema.
-        data_split: A pandas DataFrame containing the data split.
+        train_split: A pandas DataFrame containing the train data split.
 
     Returns:
         A tuple containing the preprocessed pipeline, label encoder, balanced data, and balanced labels.
@@ -63,7 +63,7 @@ def preprocess_and_balance_data(
     preprocess_pipeline, label_encoder = \
         create_pipeline_and_label_encoder(model_config, data_schema)
     transformed_data, transformed_labels = train_pipeline_and_label_encoder(
-        preprocess_pipeline, label_encoder, data_split, data_schema)
+        preprocess_pipeline, label_encoder, train_split, data_schema)
     balanced_data, balanced_labels = \
         handle_class_imbalance(transformed_data, transformed_labels, random_state=0)
     return preprocess_pipeline, label_encoder, balanced_data, balanced_labels
