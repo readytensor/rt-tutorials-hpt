@@ -8,11 +8,13 @@ This repository is part of a tutorial series on Ready Tensor, a web platform for
 
 The `app/` folder in the repository contains the following key folders/sub-folders:
 
+- `algorithm`: Contains the classifier implementation.
+- `config`: Contains JSON configuration files for the model, hyperparameter tuning, and paths.
 - `data_management/` will all files related to handling and preprocessing data.
 - `inputs/` contains the input files related to the _titanic_ dataset.
 - `model/` is a folder to save model artifacts and other assets specific to the trained model. Within this folder:
   - `artifacts/` is location to save model artifacts (i.e. the saved model including the trained preprocessing pipeline)
-- `outputs/` is used to contain the predictions or other results files. When the `predict.py` script is run, a predictions file called `predictions.csv` is saved in `outputs/predictions/` sub-directory.
+- `outputs/` is used to contain the predictions, logs and hpt results files. When the `predict.py` script is run, a predictions file called `predictions.csv` is saved in `outputs/predictions/` sub-directory.
 - `app`: Main application directory.
   - `algorithm`: Contains the classifier implementation which uses random forest classifier built using the scikit-learn library.
   - `config`: Contains JSON configuration files for the model, hyperparameter tuning, and paths.
