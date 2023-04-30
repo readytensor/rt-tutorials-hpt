@@ -6,6 +6,6 @@ def tune_hyperparameters( train_X, train_y, valid_X, valid_y,
         default_hps, hpt_specs, hpt_results_dir_path, best_hp_file_path, is_minimize=True):
     """ Tune hyperparameters
     """
-    hpo = Optimizer(default_hps, hpt_specs, hpt_results_dir_path, best_hp_file_path, is_minimize)
-    best_hyperparams = hpo.run_optimization(train_X, train_y, valid_X, valid_y)
+    hyperparameter_tuner = Optimizer(default_hps, hpt_specs, hpt_results_dir_path, best_hp_file_path, is_minimize)
+    best_hyperparams = hyperparameter_tuner.run_hyperparameter_tuning(train_X, train_y, valid_X, valid_y)
     return best_hyperparams

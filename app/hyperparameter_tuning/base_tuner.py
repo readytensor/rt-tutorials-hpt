@@ -30,7 +30,7 @@ class HyperparameterTuner(ABC):
         self.num_trials = hpt_specs.get("num_trials", 20)
 
 
-    def run_optimization(
+    def run_hyperparameter_tuning(
         self,
         train_X: Union[pd.DataFrame, np.ndarray],
         train_y: Union[pd.Series, np.ndarray],
