@@ -77,7 +77,7 @@ class OptunaHyperparameterTuner(HyperparameterTuner):
             if suggest_method is None:
                 raise ValueError(f"Error creating Hyper-Param Grid. \
                     Undefined value type: {hp_obj['type']} or search_type: {hp_obj['search_type']}. \
-                    Verify hpt_params.json file.")
+                    Verify hpt_config.json file.")
             
             if hp_obj["type"] == 'categorical':
                 hyperparameters[hp_obj['name']] = suggest_method(

@@ -92,7 +92,7 @@ class HyperOptHyperparameterTuner(HyperparameterTuner):
                 raise ValueError(
                     f"Error creating Hyper-Param Grid. "
                     f"Undefined value type: {hp_obj['type']} or search_type: {hp_obj['search_type']}. "
-                    "Verify hpt_params.json file."
+                    "Verify hpt_config.json file."
                 )
             param_grid.update({hp_obj["name"]: val})
 
