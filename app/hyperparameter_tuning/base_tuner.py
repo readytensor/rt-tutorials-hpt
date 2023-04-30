@@ -37,7 +37,7 @@ class HyperparameterTuner(ABC):
         valid_X: Union[pd.DataFrame, np.ndarray],
         valid_y: Union[pd.Series, np.ndarray],
     ) -> Dict[str, Any]:
-        """Run the hyperparameter tuning optimization process.
+        """Run the hyperparameter tuning process.
 
         Args:
             train_X (Union[pd.DataFrame, np.ndarray]): Training data features.
