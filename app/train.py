@@ -91,29 +91,26 @@ def run_training(run_tuning: bool) -> None:
     save_pipeline_and_label_encoder(preprocess_pipeline, label_encoder,
            paths.PIPELINE_FILE_PATH, paths.LABEL_ENCODER_FILE_PATH)
 
-    default_hps = read_json_as_dict(paths.DEFAULT_HYPERPARAMETERS_FILE_PATH)
+    default_hyperparameters = read_json_as_dict(paths.DEFAULT_HYPERPARAMETERS_FILE_PATH)
 
     if run_tuning:
-        print("Running hyperparameter tuning prior to training")
         hpt_specs = read_json_as_dict(paths.HPT_CONFIG_FILE_PATH)
-        best_hps = tune_hyperparameters(
+        hyperparameters = tune_hyperparameters(
             train_X=balanced_train_data,
             train_y=balanced_train_labels,
             valid_X=transformed_val_data,
             valid_y=transformed_val_labels,
-            default_hps=default_hps,
+            default_hps=default_hyperparameters,
             hpt_specs=hpt_specs,
             hpt_results_dir_path=paths.HPT_OUTPUTS_DIR,
             best_hp_file_path=paths.BEST_HYPERPARAMETERS_FILE_PATH,
             is_minimize=False
         )
-        print("HPT completed successfully")
     else:
-        print("Using default hyperparameters for training")
-        best_hps = default_hps
+        hyperparameters = default_hyperparameters
 
-    print("Running training...")
-    classifier = train_classifier_model(balanced_train_data, balanced_train_labels, best_hps)
+    
+    classifier = train_classifier_model(balanced_train_data, balanced_train_labels, hyperparameters)
     save_classifier(classifier, paths.CLASSIFIER_FILE_PATH)
     
     val_accuracy = evaluate_classifier(classifier, transformed_val_data, transformed_val_labels)
