@@ -186,9 +186,6 @@ class TransformerWrapper(BaseEstimator, TransformerMixin):
             return X
 
         non_fitted_vars = [f for f in X.columns if f not in self.fitted_vars]
-        print("X")
-        print(X)
-        print(self.fitted_vars)
         transformed = self.transformer.transform(X[self.fitted_vars])
     
         # If the transformed data is a numpy array, convert it to a DataFrame
