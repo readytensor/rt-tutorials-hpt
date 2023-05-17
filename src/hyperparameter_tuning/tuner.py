@@ -36,7 +36,8 @@ class SKOHyperparameterTuner():
             default_hyperparameters: Dictionary of default hyperparameter values.
             hpt_specs: Dictionary of hyperparameter tuning specs.
             hpt_results_file_path: Path to the hyperparameter tuning results file.
-            is_minimize: Whether the metric should be minimized. Defaults to True.
+            is_minimize:  Whether the metric should be minimized or maximized.
+                Defaults to True.
         """
         self.default_hyperparameters = default_hyperparameters
         self.hpt_specs = hpt_specs
@@ -137,8 +138,7 @@ class SKOHyperparameterTuner():
         Returns:
             A dictionary containing the best model name, hyperparameters, and score.
         """
-        print("Running HPT ...")
-        
+        # Use 1/3 of the trials to explore the space initially, but at least 5 trials
         n_initial_points = max(1, min(self.num_trials // 3, 5))
         objective_func = self._get_objective_func(train_X, train_y, valid_X, valid_y)
         optimizer_results = gp_minimize(
@@ -151,7 +151,6 @@ class SKOHyperparameterTuner():
             random_state=0,
             verbose= True
         )
-        print("Completed HPT")
         self.save_hpt_summary_results(optimizer_results)
         return self.get_best_hyperparameters(optimizer_results)
     
