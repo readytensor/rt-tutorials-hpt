@@ -28,6 +28,7 @@ binary_class_project/
 ├── src/
 │   ├── config/
 │   │   ├── default_hyperparameters.json
+│   │   ├── hpt.json
 │   │   ├── model_config.json
 │   │   ├── paths.py
 │   │   └── preprocessing.py
@@ -65,7 +66,10 @@ binary_class_project/
 - **`/inputs`**: This directory contains all the input files for your project, including the data and schema files. The data is further divided into testing and training subsets.
 - **`/model/artifacts`**: This directory is used to store the model artifacts, such as trained models and their parameters.
 - **`/outputs`**: The outputs directory contains all output files, including the prediction results, logs, and hyperparameter tuning outputs.
-- **`/src`**: This directory holds the source code for the project. It is further divided into various subdirectories such as `config` for configuration files, `data_model` for data models for input validation, `hyperparameter_tuning` for hyperparameter-tuning (HPT) related files, `prediction` for prediction model scripts, `preprocessing` for data preprocessing scripts, `schema` for schema scripts, and `xai` for explainable AI scripts. The script called `tuner.py` under `src/hyperparameter_tuning` is used to implement the scikit-optimize tuner.
+- **`/src`**: This directory holds the source code for the project. It is further divided into various subdirectories such as `config` for configuration files, `data_model` for data models for input validation, `hyperparameter_tuning` for hyperparameter-tuning (HPT) related files, `prediction` for prediction model scripts, `preprocessing` for data preprocessing scripts, `schema` for schema scripts, and `xai` for explainable AI scripts.
+  - The config file called `hpt.json` in the path `src/config/` is used to specify the tuning specifications for each of the hyperparameters. These specifications are used by the tuner to determine the search space for each hyperparameter.
+  - The configuration file called `default_hyperparameters.json` in the path `src/config/` is used to specify the default hyperparameters for the model. These hyperparameters are used when the model is trained without hyperparameter tuning. The default hyperparameters are also used as the starting point for the hyperparameter tuning process.
+  - The script called `tuner.py` under `src/hyperparameter_tuning` is used to implement the scikit-optimize tuner.
 - **`/tests`**: This directory contains all the tests for the project. It mirrors the `src` directory structure for consistency. Extensive unit tests are provided for the data preprocessing pipeline and target encoder.
 - **`/tmp`**: This directory is used for storing temporary files which are not necessary to commit to the repository.
 - **`.gitignore`**: This file specifies the files and folders that should be ignored by Git.
@@ -92,7 +96,7 @@ See the following repository for more information on the random forest implement
   - Train data, which must be a CSV file, to be placed in `./src/inputs/data/training/`. File name can be any; extension must be ".csv".
   - Test data, which must be a CSV file, to be placed in `./src/inputs/data/testing/`. File name can be any; extension must be ".csv".
   - The schema file in JSON format , to be placed in `./src/inputs/data_config/`. The schema conforms to Ready Tensor specification for the **Binary Classification** category. File name can be any; extension must be ".json".
-- Run the `train.py -t` script to train the model, with `--tune` or `-t` flag for hyperparameter tuning. If the flag is not provided, the model will be trained with default hyperparameters. This will save the model artifacts, including the preprocessing pipeline and label encoder, in the path `./model/artifacts/`. When tuning is requested, the hyperparameter tuning results will be saved in a file called `hpt_results.csv` in the path `./outputs/hpt_outputs/`. The best hyperparameters are used in the trained model.
+- Run the `train.py` script to train the model, with `--tune` or `-t` flag for hyperparameter tuning. If the flag is not provided, the model will be trained with default hyperparameters. This will save the model artifacts, including the preprocessing pipeline and label encoder, in the path `./model/artifacts/`. When tuning is requested, the hyperparameter tuning results will be saved in a file called `hpt_results.csv` in the path `./outputs/hpt_outputs/`. The best hyperparameters are used in the trained model.
 - Run the script `predict.py` to run test predictions using the trained model. This script will load the artifacts and create and save the predictions in a file called `predictions.csv` in the path `./outputs/predictions/`.
 
 ## Requirements
