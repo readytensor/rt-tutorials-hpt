@@ -33,6 +33,8 @@ binary_class_project/
 │   │   └── preprocessing.py
 │   ├── data_model/
 │   ├── hyperparameter_tuning/
+│   │   ├── __init__.json
+│   │   └── tuner.py
 │   ├── prediction/
 │   │   ├── __init__.json
 │   │   └── predictor_model.py
