@@ -1,56 +1,97 @@
 ## Introduction
 
-This repository contains the code and configurations for tuning, training and evaluating a binary classification model using scikit-learn's Random Forest Classifier. The model includes functionality for hyperparameter tuning. The implementation creates a abstract base class for hyperparameter tuning, and then derived classes for three specific tools 1) Scikit-Optimize, 2) HyperOpt, and 3) Optuna. The user can choose any of the three implementations to perform the HPT task. This project is designed to be modular, easy to understand, and easy to use.
+This repository contains the code and configurations for tuning, training and evaluating a binary classification model using scikit-learn's Random Forest Classifier. The model includes functionality for hyperparameter tuning using scikit-optimize. This project is designed to be modular, easy to understand, and easy to use.
+
+Unit tests are included for all the functions in the code.
 
 This repository is part of a tutorial series on Ready Tensor, a web platform for AI developers and users.
 
 ## Repository Contents
 
-The `app/` folder in the repository contains the following key folders/sub-folders:
+```bash
+binary_class_project/
+├── examples/
+├── inputs/
+│   ├── data/
+│   │   ├── testing/
+│   │   │   └── titanic_test.csv
+│   │   └── training/
+│   │       └── titanic_train.csv
+│   └── schema/
+│       └─ titanic_schema.json│
+├── model/
+│   └── artifacts/
+├── outputs/
+│   ├── hpt_outputs/
+│   ├── logs/
+│   └── predictions/
+├── src/
+│   ├── config/
+│   │   ├── default_hyperparameters.json
+│   │   ├── model_config.json
+│   │   ├── paths.py
+│   │   └── preprocessing.py
+│   ├── data_model/
+│   ├── hyperparameter_tuning/
+│   ├── prediction/
+│   │   ├── __init__.json
+│   │   └── predictor_model.py
+│   ├── preprocessing/
+│   │   ├── custom_transformers.py
+│   │   ├── pipeline.py
+│   │   ├── preprocess.py
+│   │   └── target_encoder.py
+│   ├── schema/
+│   │   └── data_schema.py
+│   ├── xai/
+│   ├── predict.py
+│   ├── train.py
+│   └── utils.py
+├── tests/
+│   ├── <mirrors `/src` structure ...>
+│   ...
+│   ...
+│   └── test_utils.py
+├── tmp/
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
+```
 
-- `algorithm`: Contains the classifier implementation.
-- `config`: Contains JSON configuration files for the model, hyperparameter tuning, and paths.
-- `data_management/` will all files related to handling and preprocessing data.
-- `inputs/` contains the input files related to the _titanic_ dataset.
-- `model/` is a folder to save model artifacts and other assets specific to the trained model. Within this folder:
-  - `artifacts/` is location to save model artifacts (i.e. the saved model including the trained preprocessing pipeline)
-- `outputs/` is used to contain the predictions, logs and hpt results files. When the `predict.py` script is run, a predictions file called `predictions.csv` is saved in `outputs/predictions/` sub-directory.
-- `app`: Main application directory.
-  - `algorithm`: Contains the classifier implementation which uses random forest classifier built using the scikit-learn library.
-  - `config`: Contains JSON configuration files for the model, hyperparameter tuning, and paths.
-  - `data_management`: Contains code for data preprocessing, pipeline creation, custom transformers, and label encoding.
-  - `hyperparameter_tuning`: Contains code for different hyperparameter tuning tools, including Scikit-Optimize, Hyperopt, and Optuna.
-  - `inputs`: Contains the input data and data configuration files.
-    - `data`: Contains the dataset for training and evaluation.
-    - `data_config`: Contains JSON schema files for the dataset.
-  - `model`: Contains the trained model artifacts.
-  - `outputs`: Contains the output files, such as predictions and hyperparameter tuning results.
-- `README.md`: This file.
-- `requirements.txt`: Lists the required packages to run the code in this repository.
-- `.gitignore`: Specifies files and folders to be ignored by Git.
-- `LICENSE`: The license file for this repository.
+- **`/examples`**: This directory contains example files for the titanic dataset. Three files are included: `titanic_schema.json`, `titanic_train.csv` and `titanic_test.csv`. You can place these files in the `inputs/schema`, `inputs/data/training` and `inputs/data/testing` folders, respectively.
+- **`/inputs`**: This directory contains all the input files for your project, including the data and schema files. The data is further divided into testing and training subsets.
+- **`/model/artifacts`**: This directory is used to store the model artifacts, such as trained models and their parameters.
+- **`/outputs`**: The outputs directory contains all output files, including the prediction results, logs, and hyperparameter tuning outputs.
+- **`/src`**: This directory holds the source code for the project. It is further divided into various subdirectories such as `config` for configuration files, `data_model` for data models for input validation, `hyperparameter_tuning` for hyperparameter-tuning (HPT) related files, `prediction` for prediction model scripts, `preprocessing` for data preprocessing scripts, `schema` for schema scripts, and `xai` for explainable AI scripts. The script called `tuner.py` under `src/hyperparameter_tuning` is used to implement the scikit-optimize tuner.
+- **`/tests`**: This directory contains all the tests for the project. It mirrors the `src` directory structure for consistency. Extensive unit tests are provided for the data preprocessing pipeline and target encoder.
+- **`/tmp`**: This directory is used for storing temporary files which are not necessary to commit to the repository.
+- **`.gitignore`**: This file specifies the files and folders that should be ignored by Git.
+- **`LICENSE`**: This file contains the license for the project.
+- **`README.md`**: This file contains the documentation for the project, explaining how to set it up and use it.
+- **`requirements.txt`**: This file lists the dependencies for the project, making it easier to install all necessary packages.
 
-See the following repository for information on the use of the data schema that is provided in the path `./app/inputs/data_config/`.
+See the following repository for information on the use of the data schema that is provided in the path `./src/inputs/data_config/`.
 
-- [https://github.com/readytensor/rt-tutorials-data-schema](https://github.com/readytensor/rt-tutorials-data-schema)
+- https://github.com/readytensor/rt-tutorials-data-schema
 
-See the following repository for more information on the data proprocessing logic defined in the path `./app/data_management/`.
+See the following repository for more information on the data proprocessing logic defined in the path `./src/data_management/`.
 
-- [https://github.com/readytensor/rt-tutorials-data-preprocessing](https://github.com/readytensor/rt-tutorials-data-preprocessing)
+- https://github.com/readytensor/rt-tutorials-data-preprocessing
 
 See the following repository for more information on the random forest implementation.
 
-- [https://github.com/readytensor/rt-tutorials-oop-ml](https://github.com/readytensor/rt-tutorials-oop-ml)
+- https://github.com/readytensor/rt-tutorials-4-rf-classifier
 
 ## Usage
 
 - Create your virtual environment and install dependencies listed in `requirements.txt`.
-- Place the following 3 input files in the sub-directories in `./app/inputs/`:
-  - Train data, which must be a CSV file, to be placed in `./app/inputs/data/training/`. File name can be any; extension must be ".csv".
-  - Test data, which must be a CSV file, to be placed in `./app/inputs/data/testing/`. File name can be any; extension must be ".csv".
-  - The schema file in JSON format , to be placed in `./app/inputs/data_config/`. The schema conforms to Ready Tensor specification for the **Binary Classification-Base** category. File name can be any; extension must be ".json".
-- Run the `train.py` script to train the model, with optional flags for hyperparameter tuning or using default hyperparameters.
-- Run the script `predict.py` to run test predictions using the trained model. This script will load the artifacts and create and save the predictions in a file called `predictions.csv` in the path `./app/outputs/predictions/`.
+- Place the following 3 input files from the `examples` folder in the sub-directories in `./src/inputs/`:
+  - Train data, which must be a CSV file, to be placed in `./src/inputs/data/training/`. File name can be any; extension must be ".csv".
+  - Test data, which must be a CSV file, to be placed in `./src/inputs/data/testing/`. File name can be any; extension must be ".csv".
+  - The schema file in JSON format , to be placed in `./src/inputs/data_config/`. The schema conforms to Ready Tensor specification for the **Binary Classification** category. File name can be any; extension must be ".json".
+- Run the `train.py -t` script to train the model, with `--tune` or `-t` flag for hyperparameter tuning. If the flag is not provided, the model will be trained with default hyperparameters. This will save the model artifacts, including the preprocessing pipeline and label encoder, in the path `./model/artifacts/`. When tuning is requested, the hyperparameter tuning results will be saved in a file called `hpt_results.csv` in the path `./outputs/hpt_outputs/`. The best hyperparameters are used in the trained model.
+- Run the script `predict.py` to run test predictions using the trained model. This script will load the artifacts and create and save the predictions in a file called `predictions.csv` in the path `./outputs/predictions/`.
 
 ## Requirements
 
@@ -63,8 +104,7 @@ scikit-learn==1.0
 feature-engine==1.2.0
 imbalanced-learn==0.8.1
 scikit-optimize==0.9.0
-optuna==3.1.1
-hyperopt==0.2.7
+pytest-mock==3.10.0
 ```
 
 These packages can be installed by running the following command:
@@ -72,5 +112,3 @@ These packages can be installed by running the following command:
 ```python
 pip install -r requirements.txt
 ```
-
-Note that you only need to install the packages that are required for the hyperparameter tuning tool that you want to use. For example, if you want to use Scikit-Optimize, you only need to install the `scikit-optimize` package.
