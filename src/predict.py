@@ -110,7 +110,7 @@ def run_batch_predictions(
         transformed_data,
         predictor_model,
         data_schema.allowed_target_values,
-        model_config,
+        model_config["prediction_field_name"],
         return_probs=True
     )
     predictions_df_with_ids = add_ids_to_predictions(
