@@ -70,7 +70,7 @@ binary_class_project/
   - The config file called `hpt.json` in the path `src/config/` is used to specify the tuning specifications for each of the hyperparameters. These specifications are used by the tuner to determine the search space for each hyperparameter.
   - The configuration file called `default_hyperparameters.json` in the path `src/config/` is used to specify the default hyperparameters for the model. These hyperparameters are used when the model is trained without hyperparameter tuning. The default hyperparameters are also used as the starting point for the hyperparameter tuning process.
   - The script called `tuner.py` under `src/hyperparameter_tuning` is used to implement the scikit-optimize tuner.
-- **`/tests`**: This directory contains all the tests for the project. It mirrors the `src` directory structure for consistency.
+- **`/tests`**: This directory contains all the tests for the project. It mirrors the `src` directory structure for consistency. There is also a `test_resources` folder inside `/tests` which can contain any resources needed for the tests (e.g. sample data files).
 - **`/tmp`**: This directory is used for storing temporary files which are not necessary to commit to the repository.
 - **`.gitignore`**: This file specifies the files and folders that should be ignored by Git.
 - **`LICENSE`**: This file contains the license for the project.
