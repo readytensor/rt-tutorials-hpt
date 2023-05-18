@@ -31,7 +31,7 @@ binary_class_project/
 │   │   ├── hpt.json
 │   │   ├── model_config.json
 │   │   ├── paths.py
-│   │   └── preprocessing.py
+│   │   └── preprocessing.json
 │   ├── data_model/
 │   ├── hyperparameter_tuning/
 │   │   ├── __init__.json
