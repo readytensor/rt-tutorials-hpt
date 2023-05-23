@@ -32,7 +32,7 @@ binary_class_project/
 │   │   ├── model_config.json
 │   │   ├── paths.py
 │   │   └── preprocessing.json
-│   ├── data_model/
+│   ├── data_models/
 │   ├── hyperparameter_tuning/
 │   │   ├── __init__.json
 │   │   └── tuner.py
@@ -66,7 +66,7 @@ binary_class_project/
 - **`/inputs`**: This directory contains all the input files for your project, including the data and schema files. The data is further divided into testing and training subsets.
 - **`/model/artifacts`**: This directory is used to store the model artifacts, such as trained models and their parameters.
 - **`/outputs`**: The outputs directory contains all output files, including the prediction results, logs, and hyperparameter tuning outputs.
-- **`/src`**: This directory holds the source code for the project. It is further divided into various subdirectories such as `config` for configuration files, `data_model` for data models for input validation, `hyperparameter_tuning` for hyperparameter-tuning (HPT) related files, `prediction` for prediction model scripts, `preprocessing` for data preprocessing scripts, `schema` for schema scripts, and `xai` for explainable AI scripts.
+- **`/src`**: This directory holds the source code for the project. It is further divided into various subdirectories such as `config` for configuration files, `data_models` for data models for input validation, `hyperparameter_tuning` for hyperparameter-tuning (HPT) related files, `prediction` for prediction model scripts, `preprocessing` for data preprocessing scripts, `schema` for schema scripts, and `xai` for explainable AI scripts.
   - The config file called `hpt.json` in the path `src/config/` is used to specify the tuning specifications for each of the hyperparameters. These specifications are used by the tuner to determine the search space for each hyperparameter.
   - The configuration file called `default_hyperparameters.json` in the path `src/config/` is used to specify the default hyperparameters for the model. These hyperparameters are used when the model is trained without hyperparameter tuning. The default hyperparameters are also used as the starting point for the hyperparameter tuning process.
   - The script called `tuner.py` under `src/hyperparameter_tuning` is used to implement the scikit-optimize tuner.
