@@ -12,4 +12,7 @@ ENV/
 env.bak/
 venv.bak/
 
+# Testing
+.coverage
+
 
